@@ -9,8 +9,8 @@ const Main = () => {
         <Routes>
             <Route path='/' element={<OfferList/>}></Route>
             <Route path='/offer' element={<OfferList/>}></Route>
-            <Route path='/offer/:id' element={<OfferDetailWrapper/>}></Route>
-            <Route path='/offer/edit' element={<OfferForm/>}></Route>
+            <Route reloadDocument path='/offer/:id' element={<OfferDetailWrapper/>}></Route>
+            <Route reloadDocument path='/offer/edit' element={<OfferForm/>}></Route>
         </Routes>
     );
 }

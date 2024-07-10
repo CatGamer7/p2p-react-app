@@ -16,8 +16,6 @@ const OfferForm = (props) => {
     const offerId = props.id ? props.id : null;
 
     const send = async () => {
-        let a = JSON.stringify(packValues())
-
         await fetch(
             baseApiUrl + "/offer", 
             {
@@ -30,6 +28,10 @@ const OfferForm = (props) => {
             })
         .then((res) => res.json())
         .then((data) => navigate("/offer/" + data["offerId"]));
+
+        if (props.callback) {
+            props.callback();
+        }
     };
 
     const packValues = () => {

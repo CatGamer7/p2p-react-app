@@ -1,6 +1,8 @@
 import baseApiUrl from '../../globals/importVars';
+import OfferForm from '../../forms/offer/offerForm';
 import Spinner from 'react-bootstrap/Spinner';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -8,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 const OfferDetail = (props) => {
     const [offer, setOffer] = useState({});
     const [loading, setLoading] = useState(true);
+    const [editing, setEditing] = useState(false);
     const navigate = useNavigate();
 
     const load = async (id) => {
@@ -29,7 +32,14 @@ const OfferDetail = (props) => {
         load(props.id);
     }, [props.id]);
 
+    useEffect(() => {
+        load(props.id);
+    }, [editing]);
+
     return (
+        editing ?
+        <OfferForm id={offer["offerId"]} callback={() => {setEditing(false)}}/> :
+
         <Container className="d-flex justify-content-center">
             {
                 loading ?
@@ -91,9 +101,16 @@ const OfferDetail = (props) => {
                         {offer["lender"]["name"]}
                     </Row>
                     <Row>
-                        <button onClick={deleteFn}>
-                            Delete
-                        </button>
+                        <Col>
+                            <button onClick={deleteFn}>
+                                Delete
+                            </button>
+                        </Col>
+                        <Col>
+                            <button onClick={() => setEditing(true)}>
+                                Edit
+                            </button>
+                        </Col>
                     </Row>
                 </Container>)
             }

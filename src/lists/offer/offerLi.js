@@ -1,10 +1,11 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Link } from "react-router-dom";
 
 const OfferLi = (props) => (
     <Row>
         <Col sm={2}>
-            {props.offer["offerId"]}
+            <Link to={"/offer/" + props.offer["offerId"]}>{props.offer["offerId"]}</Link>
         </Col>
         <Col sm={2}>
             {props.offer["amount"]}
