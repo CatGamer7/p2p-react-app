@@ -96,17 +96,14 @@ const OfferDetail = (props) => {
                     <Row>
                         {offer["lender"]["name"]}
                     </Row>
-                    <Row>
-                        <Col>
-                            <button onClick={deleteFn}>
-                                Delete
-                            </button>
-                        </Col>
-                        <Col>
-                            <button onClick={() => setEditing(true)}>
-                                Edit
-                            </button>
-                        </Col>
+                    <Row className="d-flex justify-content-evenly my-3">
+                        <button onClick={deleteFn} className="w-25">
+                            Delete
+                        </button>
+                       
+                        <button onClick={() => setEditing(true)} className="w-25">
+                            Edit
+                        </button>
                     </Row>
                 </Container>)
             }

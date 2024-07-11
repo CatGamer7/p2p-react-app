@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
-import UserDetail from '../user/userDetail';
+import OfferDetail from './offerDetail';
 
-const UserDetailWrapper = () => {
+const OfferDetailWrapper = () => {
 
   const { id } = useParams();
 
-  return <UserDetail id={id} />;
+  return <OfferDetail id={id} />;
 };
 
-export default UserDetailWrapper;
+export default OfferDetailWrapper;

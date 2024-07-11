@@ -1,8 +1,8 @@
 import baseApiUrl from '../../globals/importVars';
 import RequestForm from '../../forms/request/requestForm';
+import ProposalDetail from '../proposal/proposalDetail';
 import Spinner from 'react-bootstrap/Spinner';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,7 @@ const RequestDetail = (props) => {
 
     useEffect(() => {
         load(props.id);
-    }, [props.id, editing]);
+    }, [props.id, editing, loading]);
 
     return (
         editing ?
@@ -88,18 +88,27 @@ const RequestDetail = (props) => {
                     <Row>
                         {request["borrower"]["name"]}
                     </Row>
-                    <Row>
-                        <Col>
-                            <button onClick={deleteFn}>
-                                Delete
-                            </button>
-                        </Col>
-                        <Col>
-                            <button onClick={() => setEditing(true)}>
-                                Edit
-                            </button>
-                        </Col>
+                    <Row className="d-flex justify-content-evenly my-3">
+                        <button onClick={deleteFn} className="w-25">
+                            Delete
+                        </button>
+                       
+                        <button onClick={() => setEditing(true)} className="w-25">
+                            Edit
+                        </button>
                     </Row>
+                    {
+                        (request["status"] === "matched") ?
+                        <Row className="my-3">
+                            <div className="d-flex justify-content-center">
+                                <p>
+                                    Proposals will be listed below
+                                </p>
+                            </div>
+                            <ProposalDetail id={props.id} deleteCallback={() => setLoading(true)}/>
+                        </Row> :
+                        ""
+                    }   
                 </Container>)
             }
         </Container>

@@ -7,7 +7,7 @@ import RequestDetailWrapper from './details/request/requestDetailWrapper';
 import RequestForm from './forms/request/requestForm';
 
 import UserList from './lists/user/userList';
-import UserDetailWrapper from './details/offer/offerDetailWrapper';
+import UserDetailWrapper from './details/user/userDetailWrapper';
 import UserForm from './forms/user/userForm';
 
 import React from 'react';
