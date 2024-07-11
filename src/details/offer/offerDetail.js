@@ -30,15 +30,11 @@ const OfferDetail = (props) => {
 
     useEffect(() => {
         load(props.id);
-    }, [props.id]);
-
-    useEffect(() => {
-        load(props.id);
-    }, [editing]);
+    }, [props.id, editing]);
 
     return (
         editing ?
-        <OfferForm id={offer["offerId"]} callback={() => {setEditing(false)}}/> :
+        <OfferForm offer={offer} callback={() => {setEditing(false)}}/> :
 
         <Container className="d-flex justify-content-center">
             {

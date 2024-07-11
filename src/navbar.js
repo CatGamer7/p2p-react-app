@@ -22,9 +22,6 @@ const Navbar = () => (
                         </NavDropdown.Item>
                     </NavDropdown>
                 </Col>
-                <Col className="d-flex justify-content-center">
-                    <Link to="/offers">Offers</Link>
-                </Col>
                 <Col className="d-flex justify-content-center" >
                     <Link to="/">Requests</Link>
                 </Col>

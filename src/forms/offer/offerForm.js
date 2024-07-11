@@ -6,14 +6,20 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 const OfferForm = (props) => {
-    const [amount, setAmount] = useState({});
-    const [interestRate, setInterestRate] = useState({});
-    const [durationDays, setDurationDays] = useState({});
+    const [amount, setAmount] = useState(props.offer ? props.offer["amount"] : 0);
+    const [interestRate, setInterestRate] = useState(props.offer ? props.offer["interestRate"] : 0);
+    const [durationDays, setDurationDays] = useState(props.offer ? props.offer["durationDays"] : 0);
 
     const navigate = useNavigate();
 
-    const lenderId = 1;
-    const offerId = props.id ? props.id : null;
+    var lenderId = 1;
+    var offerId = null;
+    var status = 1;
+    
+    if (props.offer) {
+        offerId = props.offer["offerId"] ? props.offer["offerId"] : null;
+        status = props.offer["status"];
+    }
 
     const send = async () => {
         await fetch(
@@ -41,7 +47,7 @@ const OfferForm = (props) => {
             "amount": Number(amount),
             "interestRate": Number(interestRate),
             "durationDays": Number(durationDays),
-            "status": 1
+            "status": status
         }
     }
 
