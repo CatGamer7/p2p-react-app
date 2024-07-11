@@ -204,7 +204,7 @@ const RequestList = () => {
                     name="createdTimestamp" 
                     id="createdTimestamp" 
                     type="text"
-                    placeholder="(>=/<=/=)(operand)"
+                    disabled
                 >
                 </input>
             </Col>
@@ -236,7 +236,7 @@ const RequestList = () => {
                 {
                     loading ?
                     <Spinner animation="border" variant="primary" /> :
-                    requests.map((o) => <RequestLi request = {o} />)
+                    requests.map((r) => <RequestLi request = {r} />)
                 }
                 <PageFooter 
                     pageNumber = {pageNumber}

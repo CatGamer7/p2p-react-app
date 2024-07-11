@@ -71,7 +71,7 @@ const RequestForm = (props) => {
                 </Row>
                 <Row>
                     <Col>
-                        <label htmlFor="interestRate">Reason</label>
+                        <label htmlFor="reason">Reason</label>
                     </Col>
                     <Col>
                         <textarea

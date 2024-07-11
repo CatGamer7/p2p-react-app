@@ -1,4 +1,4 @@
-import OfferLi from './offerLi';
+import UserLi from './userLi';
 import PageFooter from '../pageFooter';
 import baseApiUrl from '../../globals/importVars';
 import postFilters from '../../utils/filterPost';
@@ -8,42 +8,41 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useEffect, useState } from 'react';
 
-const OfferList = () => {
-    const [offers, setOffers] = useState([]);
+const UserList = () => {
+    const [users, setUsers] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const [pageLast, setpageLast] = useState(true);
     const [pageFirst, setpageFirst] = useState(true);
     const [loading, setLoading] = useState(true);
 
     const [searchId, setSearchId] = useState("");
-    const [searchAmount, setSearchAmount] = useState("");
-    const [searchInterestRate, setSearchInterestRate] = useState("");
-    const [searchStatus, setSearchStatus] = useState("");
-    const [searchDurationDays, setSearchDurationDays] = useState("");
+    const [searchName, setSearchName] = useState("");
+    const [searchEmail, setSearchEmail] = useState("");
+    const [searchActive, setSearchActive] = useState("");
     const [searchCreatedTimestamp, setSearchCreatedTimestamp] = useState("");
 
     const load = async (page) => {
         const filters = extractFilterList()
 
         if (filters.length < 1) {
-            await fetch(baseApiUrl + "/offer?page=" + page)
+            await fetch(baseApiUrl + "/user?page=" + page)
             .then((res) => res.json())
             .then((data) => {
-                setOffers(data["content"]);
+                setUsers(data["content"]);
                 setPageNumber(data["pageable"]["pageNumber"]);
-                setpageLast(data["last"])
-                setpageFirst(data["first"])
+                setpageLast(data["last"]);
+                setpageFirst(data["first"]);
                 setLoading(false);
             })
         }
         else {
-            await postFilters(baseApiUrl + "/offer?page=" + page, filters)
+            await postFilters(baseApiUrl + "/user?page=" + page, filters)
             .then((data) => {
                 if ("content" in data) {
-                    setOffers(data["content"]);
+                    setUsers(data["content"]);
                     setPageNumber(data["pageable"]["pageNumber"]);
-                    setpageLast(data["last"])
-                    setpageFirst(data["first"])
+                    setpageLast(data["last"]);
+                    setpageFirst(data["first"]);
                     setLoading(false);
                 }
             })
@@ -80,31 +79,26 @@ const OfferList = () => {
         var out = [];
         var possibleFilter = {};
         
-        possibleFilter = makeFilter("offerId", searchId);
+        possibleFilter = makeFilter("userId", searchId);
         if (possibleFilter) {
             out.push(possibleFilter);
         }
             
-        possibleFilter = makeFilter("amount", searchAmount);
+        possibleFilter = makeFilter("name", searchName);
         if (possibleFilter) {
             out.push(possibleFilter);
         }
 
-        possibleFilter = makeFilter("interestRate", searchInterestRate);
+        possibleFilter = makeFilter("email", searchEmail);
         if (possibleFilter) {
             out.push(possibleFilter);
         }
         
-        possibleFilter = makeFilter("status", searchStatus);
+        possibleFilter = makeFilter("active", searchActive);
         if (possibleFilter) {
             out.push(possibleFilter);
         }
 
-        possibleFilter = makeFilter("durationDays", searchDurationDays);
-        if (possibleFilter) {
-            out.push(possibleFilter);
-        }
-        
         possibleFilter = makeFilter("createdTimestamp", searchCreatedTimestamp);
         if (possibleFilter) {
             out.push(possibleFilter);
@@ -115,10 +109,9 @@ const OfferList = () => {
 
     const reset = () => { 
         setSearchId("");
-        setSearchAmount("");
-        setSearchInterestRate("");
-        setSearchStatus("");
-        setSearchDurationDays("");
+        setSearchName("");
+        setSearchEmail("");
+        setSearchActive("");
         setSearchCreatedTimestamp("");
 
         load(pageNumber);
@@ -132,27 +125,22 @@ const OfferList = () => {
         <Row className="border rounded mb-3">
             <Col sm={2}>
                 <p className="fw-bold">
-                    Offer ID
+                    User ID
+                </p>
+            </Col>
+            <Col sm={3}>
+                <p className="fw-bold">
+                    Name
+                </p>
+            </Col>
+            <Col sm={3}>
+                <p className="fw-bold">
+                    Email
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Amount, ₽
-                </p>
-            </Col>
-            <Col sm={2}>
-                <p className="fw-bold">
-                    Interest rate, %
-                </p>
-            </Col>
-            <Col sm={2}>
-                <p className="fw-bold">
-                    Status
-                </p>
-            </Col>
-            <Col sm={2}>
-                <p className="fw-bold">
-                    Duration, days
+                    Is active
                 </p>
             </Col>
             <Col sm={2}>
@@ -169,54 +157,43 @@ const OfferList = () => {
                 <input 
                     value={searchId} 
                     onChange={(e) => setSearchId(e.target.value)} 
-                    name="offerId" 
-                    id="offerId" 
+                    name="userID" 
+                    id="userID" 
                     type="text"
                     placeholder="(>=/<=/=)(operand)"
                 >
                 </input>
             </Col>
-            <Col sm={2}>
+            <Col sm={3}>
                 <input 
-                    value={searchAmount} 
-                    onChange={(e) => setSearchAmount(e.target.value)} 
-                    name="amount" 
-                    id="amount" 
+                    value={searchName} 
+                    onChange={(e) => setSearchName(e.target.value)} 
+                    name="name" 
+                    id="name" 
                     type="text"
-                    placeholder="(>=/<=/=)(operand)"
+                    placeholder="(=)(operand)"
+                >
+                </input>
+            </Col>
+            <Col sm={3}>
+                <input 
+                    value={searchEmail} 
+                    onChange={(e) => setSearchEmail(e.target.value)} 
+                    name="email" 
+                    id="email" 
+                    type="text"
+                    placeholder="(=)(operand)"
                 >
                 </input>
             </Col>
             <Col sm={2}>
                 <input 
-                    value={searchInterestRate} 
-                    onChange={(e) => setSearchInterestRate(e.target.value)} 
-                    name="interestRate" 
-                    id="interestRate" 
+                    value={searchActive} 
+                    onChange={(e) => setSearchActive(e.target.value)} 
+                    name="active" 
+                    id="active" 
                     type="text"
-                    placeholder="(>=/<=/=)(operand)"
-                >
-                </input>
-            </Col>
-            <Col sm={2}>
-                <input 
-                    value={searchStatus} 
-                    onChange={(e) => setSearchStatus(e.target.value)} 
-                    name="status" 
-                    id="status" 
-                    type="text"
-                    placeholder="(>=/<=/=)(operand)"
-                >
-                </input>
-            </Col>
-            <Col sm={2}>
-                <input 
-                    value={searchDurationDays} 
-                    onChange={(e) => setSearchDurationDays(e.target.value)} 
-                    name="durationDays" 
-                    id="durationDays" 
-                    type="text"
-                    placeholder="(>=/<=/=)(operand)"
+                    placeholder="(=)(operand)"
                 >
                 </input>
             </Col>
@@ -259,7 +236,7 @@ const OfferList = () => {
                 {
                     loading ?
                     <Spinner animation="border" variant="primary" /> :
-                    offers.map((o) => <OfferLi offer = {o} />)
+                    users.map((u) => <UserLi user = {u} />)
                 }
                 <PageFooter 
                     pageNumber = {pageNumber}
@@ -273,4 +250,4 @@ const OfferList = () => {
     );
 }
 
-export default OfferList;
+export default UserList;

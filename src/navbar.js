@@ -36,7 +36,14 @@ const Navbar = () => (
                     </NavDropdown>
                 </Col>
                 <Col className="d-flex justify-content-center">
-                    <Link to="/">User</Link>
+                    <NavDropdown title="Users" id="UsersDropdown">
+                        <NavDropdown.Item>
+                            <Link to="/user">All users</Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <Link to="/user/edit">New user</Link>
+                        </NavDropdown.Item>
+                    </NavDropdown>
                 </Col>
             </Row>
         </Container>
