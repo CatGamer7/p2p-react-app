@@ -23,7 +23,17 @@ const Navbar = () => (
                     </NavDropdown>
                 </Col>
                 <Col className="d-flex justify-content-center" >
-                    <Link to="/">Requests</Link>
+                    <NavDropdown title="Requests" id="RequestsDropdown">
+                        <NavDropdown.Item>
+                            <Link to="/request">All requests</Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <Link to="/request">My requests</Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                            <Link to="/request/edit">New request</Link>
+                        </NavDropdown.Item>
+                    </NavDropdown>
                 </Col>
                 <Col className="d-flex justify-content-center">
                     <Link to="/">User</Link>
