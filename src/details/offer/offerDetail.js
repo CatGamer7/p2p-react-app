@@ -1,8 +1,8 @@
 import baseApiUrl from '../../globals/importVars';
 import OfferForm from '../../forms/offer/offerForm';
+import MatchDetail from '../match/matchDetail';
 import Spinner from 'react-bootstrap/Spinner';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,7 @@ const OfferDetail = (props) => {
 
     useEffect(() => {
         load(props.id);
-    }, [props.id, editing]);
+    }, [props.id, editing, loading]);
 
     return (
         editing ?
@@ -105,6 +105,18 @@ const OfferDetail = (props) => {
                             Edit
                         </button>
                     </Row>
+                    {
+                        (offer["status"] === "matched") ?
+                        <Row className="my-3">
+                            <div className="d-flex justify-content-center">
+                                <p>
+                                    Matches will be listed below
+                                </p>
+                            </div>
+                            <MatchDetail id={props.id} deleteCallback={() => setLoading(true)}/>
+                        </Row> :
+                        ""
+                    }   
                 </Container>)
             }
         </Container>
