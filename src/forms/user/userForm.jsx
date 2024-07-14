@@ -6,9 +6,14 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 const UserForm = (props) => {
-    const [name, setName] = useState(props.user ? props.user["name"] : 0);
-    const [email, setEmail] = useState(props.user ? props.user["email"] : 0);
-    const [passwordDigest, setPasswordDigest] = useState(props.user ? props.user["passwordDigest"] : 0);
+    const [name, setName] = useState(props.user ? props.user["name"] : "");
+    const [email, setEmail] = useState(props.user ? props.user["email"] : "");
+    const [passwordDigest, setPasswordDigest] = useState(props.user ? props.user["passwordDigest"] : "");
+
+    const [emailInvalid, setEmailInvalid] = useState(false);
+    const [emailEmpty, setEmailEmpty] = useState(false);
+    const [nameEmpty, setNameEmpty] = useState(false);
+    const [passwordEmpty, setPasswordEmpty] = useState(false);
 
     const navigate = useNavigate();
 
@@ -23,6 +28,12 @@ const UserForm = (props) => {
     }
 
     const send = async () => {
+        const data = packValues();
+
+        if (!data) {
+            return;
+        }
+
         await fetch(
             baseApiUrl + "/user", 
             {
@@ -31,10 +42,20 @@ const UserForm = (props) => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(packValues())
+                body: JSON.stringify(data)
             })
         .then((res) => res.json())
-        .then((data) => navigate("/user/" + data["userId"]));
+        .then((data) => {
+            if (data["status"] && data["message"].includes("email")) {
+                setEmailInvalid(true);
+            }
+            else if (data["status"]) {
+                setEmailEmpty(true);
+            }
+            else {
+                navigate("/user/" + data["userId"])
+            }
+        });
 
         if (props.callback) {
             props.callback();
@@ -42,6 +63,24 @@ const UserForm = (props) => {
     };
 
     const packValues = () => {
+
+        setNameEmpty(false);
+        setEmailEmpty(false);
+        setPasswordEmpty(false);
+
+        if (!name.trim()) {
+            setNameEmpty(true);
+            return false;
+        }
+        if (!email.trim()) {
+            setEmailEmpty(true);
+            return false;
+        }
+        if (!passwordDigest.trim()) {
+            setPasswordEmpty(true);
+            return false;
+        }
+
         return {
             "userId": userId,
             "name": name,
@@ -54,12 +93,14 @@ const UserForm = (props) => {
 
     return (
         <Container className="d-flex justify-content-center">
-            <Container fluid className="border rounded">
-                <Row>
-                    <Col>
+            <Container fluid className="border rounded border-secondary border-3">
+                <Row className="my-2">
+                    <Col sm={4}>
+                    </Col>
+                    <Col sm={2}>
                         <label htmlFor="name">Name</label>
                     </Col>
-                    <Col>
+                    <Col sm={2}>
                         <input 
                             value={name} 
                             onChange={(e) => setName(e.target.value)} 
@@ -69,12 +110,23 @@ const UserForm = (props) => {
                         >
                         </input>
                     </Col>
+                    <Col sm={4}>
+                        {
+                            nameEmpty ? 
+                            <div className="border border-danger text-center">
+                                Name cannot be empty.
+                            </div> :
+                            ""
+                        }
+                    </Col>
                 </Row>
-                <Row>
-                    <Col>
+                <Row className="my-2">
+                    <Col sm={4}>
+                    </Col>
+                    <Col sm={2}>
                         <label htmlFor="email">Email</label>
                     </Col>
-                    <Col>
+                    <Col sm={2}>
                         <input 
                             value={email} 
                             onChange={(e) => setEmail(e.target.value)} 
@@ -84,12 +136,28 @@ const UserForm = (props) => {
                         >
                         </input>
                     </Col>
+                    <Col sm={4}>
+                        {
+                            emailInvalid ? 
+                            <div className="border border-danger text-center">
+                                Email already in use.
+                            </div> :
+                            (emailEmpty ?
+                                <div className="border border-danger text-center">
+                                    Email is not valid.
+                                </div> :
+                                ""
+                            )
+                        }
+                    </Col>
                 </Row>
-                <Row>
-                    <Col>
+                <Row className="my-2">
+                    <Col sm={4}>
+                    </Col>
+                    <Col sm={2}>
                         <label htmlFor="passwordDigest">Password</label>
                     </Col>
-                    <Col>
+                    <Col sm={2}>
                         <input 
                             value={passwordDigest} 
                             onChange={(e) => setPasswordDigest(e.target.value)} 
@@ -99,13 +167,20 @@ const UserForm = (props) => {
                         >
                         </input>
                     </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <button onClick={send}>
-                            Submit
-                        </button>
+                    <Col sm={4}>
+                        {
+                            passwordEmpty ? 
+                            <div className="border border-danger text-center">
+                                Password cannot be empty.
+                            </div> :
+                            ""
+                        }
                     </Col>
+                </Row>
+                <Row className="d-flex justify-content-center">
+                    <button onClick={send} className="w-25 my-2 btn btn-outline-success">
+                        Submit
+                    </button>
                 </Row>
             </Container>
         </Container>

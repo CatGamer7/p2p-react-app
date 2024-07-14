@@ -10,6 +10,9 @@ import UserList from './lists/user/userList';
 import UserDetailWrapper from './details/user/userDetailWrapper';
 import UserForm from './forms/user/userForm';
 
+import NotFound from './utils/notFound';
+import NoConnection from './utils/noConnection';
+
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -29,6 +32,10 @@ const Main = () => {
             <Route path='/user' element={<UserList/>}></Route>
             <Route reloadDocument path='/user/:id' element={<UserDetailWrapper/>}></Route>
             <Route reloadDocument path='/user/edit' element={<UserForm/>}></Route>
+            
+            <Route path='/no-connection' element={<NoConnection/>} />
+            <Route path='/not-found' element={<NotFound/>} />
+            <Route path='/*' element={<NotFound/>} />
         </Routes>
     );
 }

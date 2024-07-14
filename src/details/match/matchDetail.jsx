@@ -27,6 +27,9 @@ const MatchDetail = (props) => {
             setMatches(data["content"]);
             setLoading(false);
         })
+        .catch(error => {
+            console.log(error) 
+        })
     };
 
     const deleteFn = async () => {
@@ -115,34 +118,34 @@ const MatchDetail = (props) => {
                         </p>
                     </Row>
                     <Row className="mb-3">
-                        <p className={matches[matchIndex]["status"] === "accepted" ? "text-primary": ""}>
+                        <p className={matches[matchIndex]["status"] === "accepted" ? "text-success": ""}>
                             Your status: {matches[matchIndex]["status"]}
                         </p> 
                     </Row>
                     <MatchHeader />
                     <Proposal matchedAmount={matches[matchIndex]["amount"]} proposal={matches[matchIndex]["proposal"]} />
                     <Row className="d-flex justify-content-evenly">
-                        <button onClick={deleteFn} className="w-25">
+                        <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
                             Delete
                         </button>
-                        <button onClick={acceptFn} className="w-25">
+                        <button onClick={acceptFn} className="w-25 btn btn-outline-success">
                             Accept
                         </button>
                     </Row>
                     <Row className="d-flex justify-content-evenly my-3">
                         {
                             matchIndex > 0 ? 
-                            (<button className="w-25" onClick={() => {setMatchIndex(matchIndex - 1)}}>
+                            (<button className="w-25 btn btn-outline-primary" onClick={() => {setMatchIndex(matchIndex - 1)}}>
                                 <strong>{matchIndex}</strong>
                             </button>) :
                             ""
                         }
-                        <button className="w-25 no-pointer">
+                        <button className="w-25 no-pointer btn btn-primary">
                             <strong>{matchIndex + 1}</strong>
                         </button>
                         {
                             (matchIndex + 1) < matches.length ? 
-                            (<button className="w-25" onClick={() => {setMatchIndex(matchIndex + 1)}}>
+                            (<button className="w-25 btn btn-outline-primary" onClick={() => {setMatchIndex(matchIndex + 1)}}>
                                 <strong>{matchIndex + 2}</strong>
                             </button>) :
                             ""

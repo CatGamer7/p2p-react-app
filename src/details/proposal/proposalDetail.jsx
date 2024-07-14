@@ -58,7 +58,7 @@ const ProposalDetail = (props) => {
         return (
             <Row>
                 <Col sm={2}>
-                    Matched amount
+                    Matched amount, ₽
                 </Col>
                 <Col sm={2}>
                     Lender Status
@@ -118,34 +118,34 @@ const ProposalDetail = (props) => {
                         </p>
                     </Row>
                     <Row className="mb-3">
-                        <p className={proposals[proposalIndex]["status"] === "accepted" ? "text-primary": ""}>
+                        <p className={proposals[proposalIndex]["status"] === "accepted" ? "text-success": ""}>
                             Your status: {proposals[proposalIndex]["status"]}
                         </p> 
                     </Row>
                     <MatchHeader />
                     {proposals[proposalIndex]["matches"].map((m) => <Match match={m} />)}
                     <Row className="d-flex justify-content-evenly">
-                        <button onClick={deleteFn} className="w-25">
-                            Delete
+                        <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
+                            Reject
                         </button>
-                        <button onClick={acceptFn} className="w-25">
+                        <button onClick={acceptFn} className="w-25 btn btn-outline-success">
                             Accept
                         </button>
                     </Row>
                     <Row className="d-flex justify-content-evenly my-3">
                         {
                             proposalIndex > 0 ? 
-                            (<button className="w-25" onClick={() => {setProposalIndex(proposalIndex - 1)}}>
+                            (<button className="w-25 btn btn-outline-primary" onClick={() => {setProposalIndex(proposalIndex - 1)}}>
                                 <strong>{proposalIndex}</strong>
                             </button>) :
                             ""
                         }
-                        <button className="w-25 no-pointer">
+                        <button className="w-25 no-pointer btn btn-primary">
                             <strong>{proposalIndex + 1}</strong>
                         </button>
                         {
                             (proposalIndex + 1) < proposals.length ? 
-                            (<button className="w-25" onClick={() => {setProposalIndex(proposalIndex + 1)}}>
+                            (<button className="w-25 btn btn-outline-primary" onClick={() => {setProposalIndex(proposalIndex + 1)}}>
                                 <strong>{proposalIndex + 2}</strong>
                             </button>) :
                             ""

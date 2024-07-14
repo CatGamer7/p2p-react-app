@@ -5,3 +5,22 @@
 .table-bordered th, .table-bordered td { 
     border: 1px solid #DEE2E6!important;
 } 
+
+.bigger-font {
+    font-size: 1.75rem !important;
+}
+
+.bottom-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.mb-6 {
+    margin-bottom: 4rem;
+}
+
+.text-center {
+    text-align: center;
+    height: 100%;
+}

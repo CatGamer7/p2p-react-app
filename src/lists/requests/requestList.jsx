@@ -3,10 +3,12 @@ import PageFooter from '../pageFooter';
 import baseApiUrl from '../../globals/importVars';
 import postFilters from '../../utils/filterPost';
 import Spinner from 'react-bootstrap/Spinner';
+import Collapse from 'react-bootstrap/Collapse';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const RequestList = () => {
     const [requests, setRequests] = useState([]);
@@ -14,6 +16,7 @@ const RequestList = () => {
     const [pageLast, setpageLast] = useState(true);
     const [pageFirst, setpageFirst] = useState(true);
     const [loading, setLoading] = useState(true);
+    const [open, setOpen] = useState(false);
 
     const [searchId, setSearchId] = useState("");
     const [searchAmount, setSearchAmount] = useState("");
@@ -21,18 +24,31 @@ const RequestList = () => {
     const [searchStatus, setSearchStatus] = useState("");
     const [searchCreatedTimestamp, setSearchCreatedTimestamp] = useState("");
 
+    const navigation = useNavigate();
+
     const load = async (page) => {
         const filters = extractFilterList()
 
         if (filters.length < 1) {
             await fetch(baseApiUrl + "/request?page=" + page)
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.status == 404) {
+                    navigation("/not-found")
+                    return 
+                }
+                return res.json()
+            })
             .then((data) => {
                 setRequests(data["content"]);
                 setPageNumber(data["pageable"]["pageNumber"]);
                 setpageLast(data["last"]);
                 setpageFirst(data["first"]);
                 setLoading(false);
+            })
+            .catch(error => {
+                if (error instanceof TypeError) {
+                    navigation("/no-connection");
+                }
             })
         }
         else {
@@ -44,6 +60,11 @@ const RequestList = () => {
                     setpageLast(data["last"]);
                     setpageFirst(data["first"]);
                     setLoading(false);
+                }
+            })
+            .catch(error => {
+                if (error instanceof TypeError) {
+                    navigation("/no-connection");
                 }
             })
         }
@@ -213,26 +234,32 @@ const RequestList = () => {
 
     const controls = (
         <Row className="d-flex justify-content-evenly my-3">
-            <Col sm={2}>
-                <button onClick={() => load(pageNumber)}>
-                    Apply
-                </button>
-            </Col>
-            <Col sm={2}>
-                <button onClick={reset}>
-                    Reset
-                </button>
-            </Col>
+            <button onClick={() => load(pageNumber)} className="w-25 btn btn-outline-success">
+                Apply
+            </button>
+            <button onClick={reset} className="w-25 btn btn-outline-danger">
+                Reset
+            </button>
             <hr className="mt-3"/>
         </Row>
     )
 
     return (
         <Container className="d-flex justify-content-center">
-            <Container fluid className="border rounded">
+            <Container fluid className="border rounded border-secondary border-3">
                 {header}
-                {filterPanel}
-                {controls}
+                <Row className="my-1">
+                    <button onClick={() => setOpen(!open)} className="btn btn-outline text-primary">
+                        Toggle filters
+                    </button>
+                    <hr></hr>
+                </Row>
+                <Collapse in={open}>
+                    <div>
+                        {filterPanel}
+                        {controls}
+                    </div>
+                </Collapse>
                 {
                     loading ?
                     <Spinner animation="border" variant="primary" /> :
