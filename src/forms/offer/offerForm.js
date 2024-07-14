@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import useAuthFetch from '../../utils/authFetch';
 
 const OfferForm = (props) => {
     const [amount, setAmount] = useState(props.offer ? props.offer["amount"] : 0);
@@ -15,8 +16,9 @@ const OfferForm = (props) => {
     const [durationEmpty, setDurationEmpty] = useState(false);
 
     const navigate = useNavigate();
+    const authFetch = useAuthFetch();
 
-    var lenderId = 1;
+    var lenderId = Number(localStorage.getItem("userId"));
     var offerId = null;
     var status = 1;
     
@@ -32,7 +34,7 @@ const OfferForm = (props) => {
             return;
         } 
 
-        await fetch(
+        await authFetch(
             baseApiUrl + "/offer", 
             {
                 method: 'PUT',
@@ -42,7 +44,6 @@ const OfferForm = (props) => {
                 },
                 body: JSON.stringify(data)
             })
-        .then((res) => res.json())
         .then((data) => navigate("/offer/" + data["offerId"]));
 
         if (props.callback) {

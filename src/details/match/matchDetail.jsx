@@ -1,16 +1,20 @@
 import baseApiUrl from '../../globals/importVars';
-import postFilters from '../../utils/filterPost';
 import RequestLi from '../../lists/requests/requestLi';
 import Spinner from 'react-bootstrap/Spinner';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useEffect, useState } from 'react';
+import useAuthFetch from '../../utils/authFetch';
+import usePostFilters from '../../utils/filterPost';
 
 const MatchDetail = (props) => {
     const [matches, setMatches] = useState({});
     const [loading, setLoading] = useState(true);
     const [matchIndex, setMatchIndex] = useState(0);
+
+    const authFetch = useAuthFetch();
+    const postFilters = usePostFilters();
 
     const load = async (id) => {
 
@@ -33,7 +37,7 @@ const MatchDetail = (props) => {
     };
 
     const deleteFn = async () => {
-        await fetch(baseApiUrl + "/match/" + matches[matchIndex]["matchId"], {method: 'DELETE'})
+        await authFetch(baseApiUrl + "/match/" + matches[matchIndex]["matchId"], {method: 'DELETE'})
 
         if (props.deleteCallback) {
             props.deleteCallback();
@@ -41,7 +45,7 @@ const MatchDetail = (props) => {
     };
 
     const acceptFn = async () => {
-        await fetch(baseApiUrl + "/match/" + matches[matchIndex]["matchId"], 
+        await authFetch(baseApiUrl + "/match/" + matches[matchIndex]["matchId"], 
             {
                 method: 'PATCH',
                 headers: {

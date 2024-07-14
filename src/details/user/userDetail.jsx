@@ -6,24 +6,20 @@ import Col from 'react-bootstrap/esm/Col';
 import Container from 'react-bootstrap/Container';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import useAuthFetch from '../../utils/authFetch';
 
 const UserDetail = (props) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
     const [editing, setEditing] = useState(false);
+    
     const navigate = useNavigate();
+    const authFetch = useAuthFetch();
 
     const readOnly = props.readOnly
 
     const load = async (id) => {
-        await fetch(baseApiUrl + "/user/" + id)
-        .then((res) => {
-            if (res.status == 404) {
-                navigate("/not-found")
-                return 
-            }
-            return res.json()
-        })
+        await authFetch(baseApiUrl + "/user/" + id, {method: 'GET'})
         .then((data) => {
             setUser(data);
             setLoading(false);
@@ -36,7 +32,7 @@ const UserDetail = (props) => {
     };
 
     const deleteFn = async () => {
-        await fetch(baseApiUrl + "/user/" + props.id, {method: 'DELETE'})
+        await authFetch(baseApiUrl + "/user/" + props.id, {method: 'DELETE'})
 
         navigate("/user");
     };

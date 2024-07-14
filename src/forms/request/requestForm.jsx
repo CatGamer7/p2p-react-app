@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import useAuthFetch from '../../utils/authFetch';
 
 const RequestForm = (props) => {
     const [amount, setAmount] = useState(props.request ? props.request["requestedAmount"] : 0);
@@ -13,8 +14,9 @@ const RequestForm = (props) => {
     const [reasonEmpty, setReasonEmpty] = useState(false);
 
     const navigate = useNavigate();
+    const authFetch = useAuthFetch();
 
-    var borrowerId = 1;
+    var borrowerId =  Number(localStorage.getItem("userId"));;
     var requestId = null;
     var status = 1;
     
@@ -30,7 +32,7 @@ const RequestForm = (props) => {
             return;
         } 
 
-        await fetch(
+        await authFetch(
             baseApiUrl + "/request", 
             {
                 method: 'PUT',
@@ -40,7 +42,6 @@ const RequestForm = (props) => {
                 },
                 body: JSON.stringify(data)
             })
-        .then((res) => res.json())
         .then((data) => navigate("/request/" + data["requestId"]));
 
         if (props.callback) {

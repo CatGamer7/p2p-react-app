@@ -9,23 +9,19 @@ import Collapse from 'react-bootstrap/esm/Collapse';
 import UserDetail from '../user/userDetail';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import useAuthFetch from '../../utils/authFetch';
 
 const OfferDetail = (props) => {
     const [offer, setOffer] = useState({});
     const [loading, setLoading] = useState(true);
     const [editing, setEditing] = useState(false);
     const [open, setOpen] = useState(false);
+
     const navigate = useNavigate();
+    const authFetch = useAuthFetch();
 
     const load = async (id) => {
-        await fetch(baseApiUrl + "/offer/" + id)
-        .then((res) => {
-            if (res.status == 404) {
-                navigate("/not-found")
-                return 
-            }
-            return res.json()
-        })
+        await authFetch(baseApiUrl + "/offer/" + id, {method: 'GET'})
         .then((data) => {
             setOffer(data);
             setLoading(false);
@@ -38,7 +34,7 @@ const OfferDetail = (props) => {
     };
 
     const deleteFn = async () => {
-        await fetch(baseApiUrl + "/offer/" + props.id, {method: 'DELETE'})
+        await authFetch(baseApiUrl + "/offer/" + props.id, {method: 'DELETE'})
 
         navigate("/offer");
     };

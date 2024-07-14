@@ -13,6 +13,8 @@ import UserForm from './forms/user/userForm';
 import NotFound from './utils/notFound';
 import NoConnection from './utils/noConnection';
 
+import LoginForm from './auth/login';
+
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -20,6 +22,7 @@ const Main = () => {
     return (
         <Routes>
             <Route path='/' element={<OfferList/>}></Route>
+            <Route path='login' element={<LoginForm/>}></Route>
 
             <Route path='/offer' element={<OfferList/>}></Route>
             <Route reloadDocument path='/offer/:id' element={<OfferDetailWrapper/>}></Route>

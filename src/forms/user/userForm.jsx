@@ -132,7 +132,7 @@ const UserForm = (props) => {
                             onChange={(e) => setEmail(e.target.value)} 
                             name="email" 
                             id="email" 
-                            type="text" 
+                            type="email"
                         >
                         </input>
                     </Col>
@@ -163,7 +163,7 @@ const UserForm = (props) => {
                             onChange={(e) => setPasswordDigest(e.target.value)} 
                             name="passwordDigest" 
                             id="passwordDigest" 
-                            type="text" 
+                            type="password" 
                         >
                         </input>
                     </Col>

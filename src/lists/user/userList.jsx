@@ -1,7 +1,6 @@
 import UserLi from './userLi';
 import PageFooter from '../pageFooter';
 import baseApiUrl from '../../globals/importVars';
-import postFilters from '../../utils/filterPost';
 import Spinner from 'react-bootstrap/Spinner';
 import Collapse from 'react-bootstrap/Collapse';
 import Row from 'react-bootstrap/Row';
@@ -9,6 +8,8 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useAuthFetch from '../../utils/authFetch';
+import usePostFilters from '../../utils/filterPost';
 
 const UserList = () => {
     const [users, setUsers] = useState([]);
@@ -25,13 +26,14 @@ const UserList = () => {
     const [searchCreatedTimestamp, setSearchCreatedTimestamp] = useState("");
 
     const navigation = useNavigate();
+    const authFetch = useAuthFetch();
+    const postFilters = usePostFilters();
 
     const load = async (page) => {
         const filters = extractFilterList()
 
         if (filters.length < 1) {
-            await fetch(baseApiUrl + "/user?page=" + page)
-            .then((res) => res.json())
+            await authFetch(baseApiUrl + "/user?page=" + page, {method: 'GET'})
             .then((data) => {
                 setUsers(data["content"]);
                 setPageNumber(data["pageable"]["pageNumber"]);

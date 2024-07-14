@@ -10,17 +10,19 @@ import Collapse from 'react-bootstrap/esm/Collapse';
 import UserDetail from '../user/userDetail';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import useAuthFetch from '../../utils/authFetch';
 
 const RequestDetail = (props) => {
     const [request, setRequest] = useState({});
     const [loading, setLoading] = useState(true);
     const [editing, setEditing] = useState(false);
     const [open, setOpen] = useState(false);
+
     const navigate = useNavigate();
+    const authFetch = useAuthFetch();
 
     const load = async (id) => {
-        await fetch(baseApiUrl + "/request/" + id)
-        .then((res) => res.json())
+        await authFetch(baseApiUrl + "/request/" + id, {method: 'GET'})
         .then((data) => {
             setRequest(data);
             setLoading(false);
@@ -33,7 +35,7 @@ const RequestDetail = (props) => {
     };
 
     const deleteFn = async () => {
-        await fetch(baseApiUrl + "/request/" + props.id, {method: 'DELETE'})
+        await authFetch(baseApiUrl + "/request/" + props.id, {method: 'DELETE'})
 
         navigate("/request");
     };
@@ -44,7 +46,7 @@ const RequestDetail = (props) => {
             "requestId": props.id
         };
 
-        await fetch(baseApiUrl + "/proposal", 
+        await authFetch(baseApiUrl + "/proposal", 
             {
                 method: 'PUT',
                 headers: {

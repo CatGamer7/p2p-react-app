@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/esm/Row';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { Link } from 'react-router-dom';
+import Logout from './auth/logout';
 
 const Navbar = () => (
     <Nav className="mb-3 border border-primary border-3">
@@ -38,6 +39,23 @@ const Navbar = () => (
                             <Link to="/user/edit">New user</Link>
                         </NavDropdown.Item>
                     </NavDropdown>
+                </Col>
+                <Col className="d-flex justify-content-center">
+                    {
+                        (localStorage.getItem("authHeader") === null) ?
+                        (
+                            <div className="d-flex justify-content-evenly">
+                                <Link to="/user/edit">Register</Link>
+                                <Link to="/login">Login</Link>
+                            </div>
+                        ) :
+                        (
+                            <div className="d-flex justify-content-evenly">
+                                <Link to={"/user/" + localStorage.getItem("userId")}>My page</Link>
+                                <Logout />
+                            </div>
+                        )
+                    }
                 </Col>
             </Row>
         </Container>

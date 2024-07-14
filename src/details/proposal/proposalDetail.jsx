@@ -1,17 +1,21 @@
 import baseApiUrl from '../../globals/importVars';
-import postFilters from '../../utils/filterPost';
 import Spinner from 'react-bootstrap/Spinner';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useEffect, useState } from 'react';
 import OfferLi from '../../lists/offer/offerLi';
+import useAuthFetch from '../../utils/authFetch';
+import usePostFilters from '../../utils/filterPost';
 
 const ProposalDetail = (props) => {
     const [proposals, setProposals] = useState({});
     const [loading, setLoading] = useState(true);
     const [proposalIndex, setProposalIndex] = useState(0);
 
+    const authFetch = useAuthFetch();
+    const postFilters = usePostFilters();
+    
     const load = async (id) => {
 
         let url = baseApiUrl + "/proposal";
@@ -30,7 +34,7 @@ const ProposalDetail = (props) => {
     };
 
     const deleteFn = async () => {
-        await fetch(baseApiUrl + "/proposal/" + proposals[proposalIndex]["proposalId"], {method: 'DELETE'})
+        await authFetch(baseApiUrl + "/proposal/" + proposals[proposalIndex]["proposalId"], {method: 'DELETE'})
 
         if (props.deleteCallback) {
             props.deleteCallback();
@@ -38,7 +42,7 @@ const ProposalDetail = (props) => {
     };
 
     const acceptFn = async () => {
-        await fetch(baseApiUrl + "/proposal/" + proposals[proposalIndex]["proposalId"], 
+        await authFetch(baseApiUrl + "/proposal/" + proposals[proposalIndex]["proposalId"], 
             {
                 method: 'PATCH',
                 headers: {
