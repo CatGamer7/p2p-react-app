@@ -43,6 +43,7 @@ const LoginForm = () => {
                 if (("content" in data) && (data["content"].length > 0)) {
                     localStorage.setItem("authHeader", authHeader);
                     localStorage.setItem("userId", data["content"][0]["userId"]);
+                    localStorage.setItem("staff", data["content"][0]["staff"]);
 
                     navigation("/");
                     navigation(0);  //Disgusting, but it refreshes navbar

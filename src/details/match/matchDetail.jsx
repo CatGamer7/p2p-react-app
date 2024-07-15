@@ -16,6 +16,8 @@ const MatchDetail = (props) => {
     const authFetch = useAuthFetch();
     const postFilters = usePostFilters();
 
+    const authUserId = Number(localStorage.getItem("userId"));
+
     const load = async (id) => {
 
         let url = baseApiUrl + "/match";
@@ -128,14 +130,18 @@ const MatchDetail = (props) => {
                     </Row>
                     <MatchHeader />
                     <Proposal matchedAmount={matches[matchIndex]["amount"]} proposal={matches[matchIndex]["proposal"]} />
-                    <Row className="d-flex justify-content-evenly">
-                        <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
-                            Delete
-                        </button>
-                        <button onClick={acceptFn} className="w-25 btn btn-outline-success">
-                            Accept
-                        </button>
-                    </Row>
+                    {
+                        (authUserId === props.userId) ?
+                        <Row className="d-flex justify-content-evenly">
+                            <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
+                                Reject
+                            </button>
+                            <button onClick={acceptFn} className="w-25 btn btn-outline-success">
+                                Accept
+                            </button> 
+                        </Row>:
+                        ""
+                    }
                     <Row className="d-flex justify-content-evenly my-3">
                         {
                             matchIndex > 0 ? 

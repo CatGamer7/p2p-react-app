@@ -1,8 +1,9 @@
-import authFetch from "./authFetch"
+import useAuthFetch from "./authFetch"
 
-const usePostFilters = () => 
+const usePostFilters = () => {
+    const authFetch = useAuthFetch()
     
-    (url, filterList) => {
+    return (url, filterList) => {
 
         return authFetch(
             url, 
@@ -14,6 +15,7 @@ const usePostFilters = () =>
                 },
                 body: JSON.stringify(filterList)
             })
+    }
 }
 
 export default usePostFilters

@@ -17,6 +17,8 @@ const UserDetail = (props) => {
     const authFetch = useAuthFetch();
 
     const readOnly = props.readOnly
+    const authUserId = localStorage.getItem("userId");
+    const authUserStaff = localStorage.getItem("staff") === "true";
 
     const load = async (id) => {
         await authFetch(baseApiUrl + "/user/" + id, {method: 'GET'})
@@ -96,13 +98,20 @@ const UserDetail = (props) => {
                         readOnly ? 
                         "" :
                         <Row className="d-flex justify-content-evenly my-3">
-                            <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
-                                Delete
-                            </button>
-                        
-                            <button onClick={() => setEditing(true)} className="w-25 btn btn-outline-primary">
-                                Edit
-                            </button>
+                            {
+                                ((authUserId === props.id) || authUserStaff) ?
+                                <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
+                                    Delete
+                                </button> :
+                                ""
+                            }
+                            {
+                                (authUserId === props.id) ?
+                                <button onClick={() => setEditing(true)} className="w-25 btn btn-outline-primary">
+                                    Edit
+                                </button> :
+                                ""
+                            }
                         </Row>
                     }
                 </Container>)

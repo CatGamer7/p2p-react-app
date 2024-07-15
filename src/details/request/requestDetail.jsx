@@ -20,6 +20,9 @@ const RequestDetail = (props) => {
 
     const navigate = useNavigate();
     const authFetch = useAuthFetch();
+    
+    const authUserId = Number(localStorage.getItem("userId"));
+    const authUserStaff = localStorage.getItem("staff") === "true";
 
     const load = async (id) => {
         await authFetch(baseApiUrl + "/request/" + id, {method: 'GET'})
@@ -55,7 +58,6 @@ const RequestDetail = (props) => {
                 },
                 body: JSON.stringify(payload)
             })
-        .then((res) => res.json());
 
         setLoading(true);
     };
@@ -124,13 +126,20 @@ const RequestDetail = (props) => {
                         </Col>
                     </Row>
                     <Row className="d-flex justify-content-evenly my-3">
-                        <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
-                            Delete
-                        </button>
-                       
-                        <button onClick={() => setEditing(true)} className="w-25 btn btn-outline-primary">
-                            Edit
-                        </button>
+                        {
+                            ((authUserId === request["borrower"]["userId"]) || authUserStaff) ?
+                            <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
+                                Delete
+                            </button> :
+                            ""
+                        }
+                        {
+                            (authUserId === request["borrower"]["userId"]) ?
+                            <button onClick={() => setEditing(true)} className="w-25 btn btn-outline-primary">
+                                Edit
+                            </button> :
+                            ""
+                        }
                     </Row>
                     <Row className="my-1">
                         <button onClick={() => setOpen(!open)} className="btn btn-outline text-primary">
@@ -151,7 +160,7 @@ const RequestDetail = (props) => {
                                     Proposals will be listed below
                                 </p>
                             </div>
-                            <ProposalDetail id={props.id} deleteCallback={() => setLoading(true)}/>
+                            <ProposalDetail id={props.id} userId={request["borrower"]["userId"]} deleteCallback={() => setLoading(true)}/>
                         </Row> :
                         <Row className="mt-5 mb-3">
                             <div className="d-flex justify-content-center">

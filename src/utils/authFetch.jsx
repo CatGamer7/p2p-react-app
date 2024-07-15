@@ -27,6 +27,11 @@ const useAuthFetch = () => {
             
             return res.json();
         })
+        .catch((error) => {
+            if (!(error instanceof SyntaxError)) {
+                throw error;
+            }
+        })
     }
 }
 

@@ -19,6 +19,9 @@ const OfferDetail = (props) => {
 
     const navigate = useNavigate();
     const authFetch = useAuthFetch();
+    
+    const authUserId = Number(localStorage.getItem("userId"));
+    const authUserStaff = localStorage.getItem("staff") === "true";
 
     const load = async (id) => {
         await authFetch(baseApiUrl + "/offer/" + id, {method: 'GET'})
@@ -111,13 +114,20 @@ const OfferDetail = (props) => {
                         </Col>
                     </Row>
                     <Row className="d-flex justify-content-evenly my-3">
-                        <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
-                            Delete
-                        </button>
-                       
-                        <button onClick={() => setEditing(true)} className="w-25 btn btn-outline-primary">
-                            Edit
-                        </button>
+                        {
+                            ((authUserId === offer["lender"]["userId"]) || authUserStaff) ?
+                            <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
+                                Delete
+                            </button> :
+                            ""
+                        }
+                        {
+                            (authUserId === offer["lender"]["userId"]) ?
+                            <button onClick={() => setEditing(true)} className="w-25 btn btn-outline-primary">
+                                Edit
+                            </button> :
+                            ""
+                        }
                     </Row>
                     <Row className="my-1">
                         <button onClick={() => setOpen(!open)} className="btn btn-outline text-primary">
@@ -138,7 +148,7 @@ const OfferDetail = (props) => {
                                     Matches will be listed below
                                 </p>
                             </div>
-                            <MatchDetail id={props.id} deleteCallback={() => setLoading(true)}/>
+                            <MatchDetail id={props.id} userId={offer["lender"]["userId"]} deleteCallback={() => setLoading(true)}/>
                         </Row> :
                         ""
                     }   
