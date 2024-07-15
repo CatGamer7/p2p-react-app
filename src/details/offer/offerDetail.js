@@ -88,7 +88,7 @@ const OfferDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Процент
+                                        Годовой процент
                                     </th>
                                     <td>
                                         {offer["interestRate"]} %
@@ -96,7 +96,7 @@ const OfferDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Продолжительность
+                                        Срок
                                     </th>
                                     <td>
                                         {offer["durationDays"]} дней

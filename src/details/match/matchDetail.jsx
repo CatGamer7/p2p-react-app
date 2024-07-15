@@ -81,7 +81,7 @@ const MatchDetail = (props) => {
                             Сумма, ₽
                         </Col>
                         <Col sm={4}>
-                            Причина, %
+                            Цель
                         </Col>
                         <Col sm={2}>
                             Статус

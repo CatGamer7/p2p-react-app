@@ -152,7 +152,7 @@ const RequestList = () => {
             </Col>
             <Col sm={4}>
                 <p className="fw-bold">
-                    Причина, %
+                    Цель
                 </p>
             </Col>
             <Col sm={2}>

@@ -108,7 +108,7 @@ const RequestDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Причина
+                                        Цель
                                     </th>
                                     <td>
                                         {request["reason"]}

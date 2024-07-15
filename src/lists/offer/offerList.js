@@ -159,7 +159,7 @@ const OfferList = () => {
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Процент, %
+                    Годовой процент, %
                 </p>
             </Col>
             <Col sm={2}>
@@ -169,7 +169,7 @@ const OfferList = () => {
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Продолжительность, дней
+                    Срок, дней
                 </p>
             </Col>
             <Col sm={2}>

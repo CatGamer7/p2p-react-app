@@ -107,7 +107,7 @@ const RequestForm = (props) => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="reason">Причина</label>
+                        <label htmlFor="reason">Цель</label>
                     </Col>
                     <Col sm={3}>
                         <textarea

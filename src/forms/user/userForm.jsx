@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import useAuthFetch from '../../utils/authFetch';
 
 const UserForm = (props) => {
     const [name, setName] = useState(props.user ? props.user["name"] : "");
@@ -16,6 +17,7 @@ const UserForm = (props) => {
     const [passwordEmpty, setPasswordEmpty] = useState(false);
 
     const navigate = useNavigate();
+    const authFetch = useAuthFetch();
 
     var userId = null;
     var staff = false;
@@ -34,7 +36,7 @@ const UserForm = (props) => {
             return;
         }
 
-        await fetch(
+        await authFetch(
             baseApiUrl + "/user", 
             {
                 method: 'PUT',
@@ -44,7 +46,6 @@ const UserForm = (props) => {
                 },
                 body: JSON.stringify(data)
             })
-        .then((res) => res.json())
         .then((data) => {
             if (data["status"] && data["message"].includes("email")) {
                 setEmailInvalid(true);
@@ -76,7 +77,7 @@ const UserForm = (props) => {
             setEmailEmpty(true);
             return false;
         }
-        if (!passwordDigest.trim()) {
+        if (!passwordDigest || !passwordDigest.trim()) {
             setPasswordEmpty(true);
             return false;
         }

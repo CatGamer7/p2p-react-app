@@ -124,7 +124,7 @@ const OfferForm = (props) => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="interestRate">Процент, %</label>
+                        <label htmlFor="interestRate">Годовой процент, %</label>
                     </Col>
                     <Col sm={2}>
                         <input 
@@ -151,7 +151,7 @@ const OfferForm = (props) => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="durationDays">Продолжительность, дни</label>
+                        <label htmlFor="durationDays">Срок, дни</label>
                     </Col>
                     <Col sm={2}>
                         <input 
@@ -168,7 +168,7 @@ const OfferForm = (props) => {
                         {
                             durationEmpty ?
                             <div className="border border-danger text-center">
-                                Продолжительность должна быть положительной.
+                                Срок должен быть положительным.
                             </div> :
                             ""
                         }
