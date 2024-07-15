@@ -125,7 +125,7 @@ const RequestForm = (props) => {
                         {
                             reasonEmpty ?
                             <div className="border border-danger text-center">
-                                Причина должна быть описана.
+                                Цель должна быть описана.
                             </div> :
                             ""
                         }
