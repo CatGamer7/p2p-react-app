@@ -103,7 +103,7 @@ const ProposalDetail = (props) => {
                     {props.match["amount"]}
                 </Col>
                 <Col sm={2}>
-                    {props.match["status"]}
+                    {(props.match["status"] === "created") ? "Подобран" : "Принял"}
                 </Col>
                 <Col sm={8}>
                     <OfferLi offer={props.match["offer"]} />

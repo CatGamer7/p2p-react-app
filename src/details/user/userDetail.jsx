@@ -36,7 +36,13 @@ const UserDetail = (props) => {
     const deleteFn = async () => {
         await authFetch(baseApiUrl + "/user/" + props.id, {method: 'DELETE'})
 
-        navigate("/user");
+        if (localStorage.getItem("staff") === "true") {
+            navigate("/user");
+        }
+        else {
+            navigate("/login");
+            navigate(0); //Disgusting, but it refreshes navbar
+        }
     };
 
     useEffect(() => {

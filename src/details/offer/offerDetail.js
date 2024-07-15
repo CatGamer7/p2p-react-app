@@ -23,6 +23,16 @@ const OfferDetail = (props) => {
     const authUserId = Number(localStorage.getItem("userId"));
     const authUserStaff = localStorage.getItem("staff") === "true";
 
+    const humanize = (stringStatus) => {
+        switch (stringStatus) {
+            case "available":
+                return "Доступно";
+
+            case "matched":
+                return "Подобрано";
+        }
+    }
+
     const load = async (id) => {
         await authFetch(baseApiUrl + "/offer/" + id, {method: 'GET'})
         .then((data) => {
@@ -89,7 +99,7 @@ const OfferDetail = (props) => {
                                         Продолжительность
                                     </th>
                                     <td>
-                                        {offer["durationDays"]} days
+                                        {offer["durationDays"]} дней
                                     </td>
                                 </tr>
                                 <tr>
@@ -97,7 +107,7 @@ const OfferDetail = (props) => {
                                         Статус
                                     </th>
                                     <td>
-                                        {offer["status"]}
+                                        {humanize(offer["status"])}
                                     </td>
                                 </tr>
                                 <tr>

@@ -24,6 +24,16 @@ const RequestDetail = (props) => {
     const authUserId = Number(localStorage.getItem("userId"));
     const authUserStaff = localStorage.getItem("staff") === "true";
 
+    const humanize = (stringStatus) => {
+        switch (stringStatus) {
+            case "pending":
+                return "В обработке";
+
+            case "matched":
+                return "Подобран";
+        }
+    }
+
     const load = async (id) => {
         await authFetch(baseApiUrl + "/request/" + id, {method: 'GET'})
         .then((data) => {
@@ -109,7 +119,7 @@ const RequestDetail = (props) => {
                                         Статус
                                     </th>
                                     <td>
-                                        {request["status"]}
+                                        {humanize(request["status"])}
                                     </td>
                                 </tr>
                                 <tr>

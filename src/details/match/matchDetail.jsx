@@ -103,7 +103,7 @@ const MatchDetail = (props) => {
                     {props.matchedAmount} 
                 </Col>
                 <Col sm={2}>
-                    {props.proposal["status"]}
+                    {(props.proposal["status"] === "created") ? "Подобран" : "Принял"}
                 </Col>
                 <Col sm={8}>
                     <RequestLi request={props.proposal["request"]} />

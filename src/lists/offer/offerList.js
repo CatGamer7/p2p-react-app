@@ -149,32 +149,32 @@ const OfferList = () => {
         <Row className="border rounded mb-3">
             <Col sm={2}>
                 <p className="fw-bold">
-                    Offer ID
+                    ID
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Amount, ₽
+                    Сумма, ₽
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Interest rate, %
+                    Процент, %
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Status
+                    Статус
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Duration, days
+                    Продолжительность, дней
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Created at
+                    Время создания
                 </p>
             </Col>
         </Row>
@@ -189,7 +189,7 @@ const OfferList = () => {
                     name="offerId" 
                     id="offerId" 
                     type="text"
-                    placeholder="(>=/<=/=)(operand)"
+                    placeholder="(>=/<=/=)(операнда)"
                 >
                 </input>
             </Col>
@@ -200,7 +200,7 @@ const OfferList = () => {
                     name="amount" 
                     id="amount" 
                     type="text"
-                    placeholder="(>=/<=/=)(operand)"
+                    placeholder="(>=/<=/=)(операнда)"
                 >
                 </input>
             </Col>
@@ -211,7 +211,7 @@ const OfferList = () => {
                     name="interestRate" 
                     id="interestRate" 
                     type="text"
-                    placeholder="(>=/<=/=)(operand)"
+                    placeholder="(>=/<=/=)(операнда)"
                 >
                 </input>
             </Col>
@@ -222,7 +222,7 @@ const OfferList = () => {
                     name="status" 
                     id="status" 
                     type="text"
-                    placeholder="(>=/<=/=)(operand)"
+                    placeholder="(>=/<=/=)(операнда)"
                 >
                 </input>
             </Col>
@@ -233,7 +233,7 @@ const OfferList = () => {
                     name="durationDays" 
                     id="durationDays" 
                     type="text"
-                    placeholder="(>=/<=/=)(operand)"
+                    placeholder="(>=/<=/=)(операнда)"
                 >
                 </input>
             </Col>
@@ -254,10 +254,10 @@ const OfferList = () => {
     const controls = (
         <Row className="d-flex justify-content-evenly my-3">
             <button onClick={() => load(pageNumber)} className="w-25 btn btn-outline-success">
-                Apply
+                Применить
             </button>
             <button onClick={reset} className="w-25 btn btn-outline-danger">
-                Reset
+                Сбросить
             </button>
             <hr className="mt-3"/>
         </Row>
@@ -269,7 +269,7 @@ const OfferList = () => {
                 {header}
                 <Row className="my-1">
                     <button onClick={() => setOpen(!open)} className="btn btn-outline text-primary">
-                        Toggle filters
+                        Раскрыть/свернуть фильтры
                     </button>
                     <hr></hr>
                 </Row>

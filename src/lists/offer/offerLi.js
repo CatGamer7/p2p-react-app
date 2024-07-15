@@ -6,14 +6,14 @@ const OfferLi = (props) => {
     const humanize = (stringStatus) => {
         switch (stringStatus) {
             case "available":
-                return "Доступен";
+                return "Доступно";
 
             case "matched":
-                return "Подобран";
+                return "Подобрано";
         }
     }
 
-    (<Row>
+    return (<Row>
         <Col sm={2}>
             <Link to={"/offer/" + props.offer["offerId"]}>{props.offer["offerId"]}</Link>
         </Col>
