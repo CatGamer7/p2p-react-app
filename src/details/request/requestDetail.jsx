@@ -82,7 +82,7 @@ const RequestDetail = (props) => {
                             <table className="table table-bordered table-striped">
                                 <tr>
                                     <th>
-                                        Request ID
+                                        ID
                                     </th>
                                     <td>
                                         {request["requestId"]}
@@ -90,7 +90,7 @@ const RequestDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Amount
+                                        Сумма
                                     </th>
                                     <td>
                                         {request["requestedAmount"]} ₽
@@ -98,7 +98,7 @@ const RequestDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Reason
+                                        Причина
                                     </th>
                                     <td>
                                         {request["reason"]}
@@ -106,7 +106,7 @@ const RequestDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Status
+                                        Статус
                                     </th>
                                     <td>
                                         {request["status"]}
@@ -114,7 +114,7 @@ const RequestDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Created timestamp
+                                        Время создания
                                     </th>
                                     <td>
                                         {request["createdTimestamp"]}
@@ -129,21 +129,21 @@ const RequestDetail = (props) => {
                         {
                             ((authUserId === request["borrower"]["userId"]) || authUserStaff) ?
                             <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
-                                Delete
+                                Удалить
                             </button> :
                             ""
                         }
                         {
                             (authUserId === request["borrower"]["userId"]) ?
                             <button onClick={() => setEditing(true)} className="w-25 btn btn-outline-primary">
-                                Edit
+                                Редактировать
                             </button> :
                             ""
                         }
                     </Row>
                     <Row className="my-1">
                         <button onClick={() => setOpen(!open)} className="btn btn-outline text-primary">
-                            Toggle user info
+                            Раскрыть/свернуть информацию о пользователе
                         </button>
                         <hr></hr>
                     </Row>
@@ -157,14 +157,14 @@ const RequestDetail = (props) => {
                         <Row className="mt-5">
                             <div className="d-flex justify-content-center">
                                 <p>
-                                    Proposals will be listed below
+                                    Подобранные предложения о финансировании будут приведены внизу.
                                 </p>
                             </div>
                             <ProposalDetail id={props.id} userId={request["borrower"]["userId"]} deleteCallback={() => setLoading(true)}/>
                         </Row> :
                         <Row className="mt-5 mb-3">
                             <div className="d-flex justify-content-center">
-                                This request has no offers yet. You may submit your own.
+                                У этого запроса пока нет предложений. Вы можете сделать своё предложение.
                             </div>
                             <OfferForm dataCallback={(data) => newOffer(data)} />
                         </Row>

@@ -14,7 +14,7 @@ const Logout = () => {
 
     return (
         <a href="#" onClick={clear} className="py-2">
-            Logout
+            Выйти
         </a>
     );
 }

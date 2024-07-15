@@ -45,7 +45,7 @@ const LoginForm = () => {
                     localStorage.setItem("userId", data["content"][0]["userId"]);
                     localStorage.setItem("staff", data["content"][0]["staff"]);
 
-                    navigation("/");
+                    navigation("/user");
                     navigation(0);  //Disgusting, but it refreshes navbar
                 }
                 else {
@@ -71,7 +71,7 @@ const LoginForm = () => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">Электронная почта</label>
                     </Col>
                     <Col sm={2}>
                         <input 
@@ -90,7 +90,7 @@ const LoginForm = () => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="passwordDigest">Password</label>
+                        <label htmlFor="passwordDigest">Пароль</label>
                     </Col>
                     <Col sm={2}>
                         <input 
@@ -107,14 +107,14 @@ const LoginForm = () => {
                 </Row>
                 <Row className="d-flex justify-content-center">
                     <button onClick={loadUser} className="w-25 my-2 btn btn-outline-success">
-                        Submit
+                        Отправить
                     </button>
                 </Row>
                 {
                     invalid ?
                     <Row className="d-flex justify-content-center my-5">
                         <div className="w-75 border border-danger border-3 display-6 text-center p-2">
-                            Invalid email or password.
+                            Неверная почта или пароль
                         </div>
                     </Row> :
                     ""

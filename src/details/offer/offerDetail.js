@@ -62,7 +62,7 @@ const OfferDetail = (props) => {
                             <table className="table table-bordered table-striped">
                                 <tr>
                                     <th>
-                                        Offer ID
+                                        ID
                                     </th>
                                     <td>
                                         {offer["offerId"]}
@@ -70,7 +70,7 @@ const OfferDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Amount
+                                        Сумма
                                     </th>
                                     <td>
                                         {offer["amount"]} ₽
@@ -78,7 +78,7 @@ const OfferDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Interest rate
+                                        Процент
                                     </th>
                                     <td>
                                         {offer["interestRate"]} %
@@ -86,7 +86,7 @@ const OfferDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Duration
+                                        Продолжительность
                                     </th>
                                     <td>
                                         {offer["durationDays"]} days
@@ -94,7 +94,7 @@ const OfferDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Status
+                                        Статус
                                     </th>
                                     <td>
                                         {offer["status"]}
@@ -102,7 +102,7 @@ const OfferDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Created timestamp
+                                        Время создания
                                     </th>
                                     <td>
                                         {offer["createdTimestamp"]}
@@ -117,21 +117,21 @@ const OfferDetail = (props) => {
                         {
                             ((authUserId === offer["lender"]["userId"]) || authUserStaff) ?
                             <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
-                                Delete
+                                Удалить
                             </button> :
                             ""
                         }
                         {
                             (authUserId === offer["lender"]["userId"]) ?
                             <button onClick={() => setEditing(true)} className="w-25 btn btn-outline-primary">
-                                Edit
+                                Редактировать
                             </button> :
                             ""
                         }
                     </Row>
                     <Row className="my-1">
                         <button onClick={() => setOpen(!open)} className="btn btn-outline text-primary">
-                            Toggle user info
+                            Раскрыть/свернуть информацию о пользователе
                         </button>
                         <hr></hr>
                     </Row>
@@ -145,7 +145,7 @@ const OfferDetail = (props) => {
                         <Row className="mt-5">
                             <div className="d-flex justify-content-center">
                                 <p>
-                                    Matches will be listed below
+                                    Подобранные запросы будут приведены снизу.
                                 </p>
                             </div>
                             <MatchDetail id={props.id} userId={offer["lender"]["userId"]} deleteCallback={() => setLoading(true)}/>

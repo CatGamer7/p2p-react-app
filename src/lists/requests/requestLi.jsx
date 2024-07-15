@@ -2,8 +2,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 
-const RequestLi = (props) => (
-    <Row>
+const RequestLi = (props) => {
+    const humanize = (stringStatus) => {
+        switch (stringStatus) {
+            case "pending":
+                return "В обработке";
+
+            case "matched":
+                return "Подобран";
+        }
+    }
+    
+    return (<Row>
         <Col sm={2}>
             <Link to={"/request/" + props.request["requestId"]}>{props.request["requestId"]}</Link>
         </Col>
@@ -19,13 +29,13 @@ const RequestLi = (props) => (
 
         </Col>
         <Col sm={2}>
-            {props.request["status"]}
+            {humanize(props.request["status"])}
         </Col>
         <Col sm={2}>
             {new Date(props.request["createdTimestamp"]).toLocaleTimeString("ru", {hour12: false})}
         </Col>
         <hr/>
-    </Row>
-);
+    </Row>)
+};
 
 export default RequestLi;

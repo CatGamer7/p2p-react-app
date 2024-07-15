@@ -98,7 +98,7 @@ const UserForm = (props) => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="name">Name</label>
+                        <label htmlFor="name">Имя</label>
                     </Col>
                     <Col sm={2}>
                         <input 
@@ -114,7 +114,7 @@ const UserForm = (props) => {
                         {
                             nameEmpty ? 
                             <div className="border border-danger text-center">
-                                Name cannot be empty.
+                                Имя не может быть пустым.
                             </div> :
                             ""
                         }
@@ -124,7 +124,7 @@ const UserForm = (props) => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">Электронная почта</label>
                     </Col>
                     <Col sm={2}>
                         <input 
@@ -140,11 +140,11 @@ const UserForm = (props) => {
                         {
                             emailInvalid ? 
                             <div className="border border-danger text-center">
-                                Email already in use.
+                                Почта уже используется.
                             </div> :
                             (emailEmpty ?
                                 <div className="border border-danger text-center">
-                                    Email is not valid.
+                                    Неверный формат почты.
                                 </div> :
                                 ""
                             )
@@ -155,7 +155,7 @@ const UserForm = (props) => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="passwordDigest">Password</label>
+                        <label htmlFor="passwordDigest">Пароль</label>
                     </Col>
                     <Col sm={2}>
                         <input 
@@ -171,7 +171,7 @@ const UserForm = (props) => {
                         {
                             passwordEmpty ? 
                             <div className="border border-danger text-center">
-                                Password cannot be empty.
+                                Пароль не может быть пустым.
                             </div> :
                             ""
                         }
@@ -179,7 +179,7 @@ const UserForm = (props) => {
                 </Row>
                 <Row className="d-flex justify-content-center">
                     <button onClick={send} className="w-25 my-2 btn btn-outline-success">
-                        Submit
+                        Отправить
                     </button>
                 </Row>
             </Container>

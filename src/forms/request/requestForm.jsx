@@ -79,7 +79,7 @@ const RequestForm = (props) => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="amount">Amount, ₽</label>
+                        <label htmlFor="amount">Сумма, ₽</label>
                     </Col>
                     <Col sm={3}>
                         <input 
@@ -97,7 +97,7 @@ const RequestForm = (props) => {
                         {
                             amountEmpty ?
                             <div className="border border-danger text-center">
-                                Amount must be positive.
+                                Сумма должна быть положительной.
                             </div> :
                             ""
                         }
@@ -107,7 +107,7 @@ const RequestForm = (props) => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="reason">Reason</label>
+                        <label htmlFor="reason">Причина</label>
                     </Col>
                     <Col sm={3}>
                         <textarea
@@ -125,7 +125,7 @@ const RequestForm = (props) => {
                         {
                             reasonEmpty ?
                             <div className="border border-danger text-center">
-                                Must provide a reason for loan.
+                                Причина должна быть описана.
                             </div> :
                             ""
                         }
@@ -133,7 +133,7 @@ const RequestForm = (props) => {
                 </Row>
                 <Row className="d-flex justify-content-center">
                     <button onClick={send} className="w-25 my-2 btn btn-outline-success">
-                        Submit
+                        Отправить
                     </button>
                 </Row>
             </Container>

@@ -36,9 +36,9 @@ const Main = () => {
             <Route reloadDocument path='/user/:id' element={<UserDetailWrapper/>}></Route>
             <Route reloadDocument path='/user/edit' element={<UserForm/>}></Route>
             
-            <Route path='/no-connection' element={<NoConnection/>} />
-            <Route path='/not-found' element={<NotFound/>} />
-            <Route path='/*' element={<NotFound/>} />
+            <Route path='/no-connection' element={<NoConnection/>}></Route>
+            <Route path='/not-found' element={<NotFound/>}></Route>
+            <Route path='/*' element={<NotFound/>}></Route>
         </Routes>
     );
 }

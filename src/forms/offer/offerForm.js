@@ -97,7 +97,7 @@ const OfferForm = (props) => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="amount">Amount, ₽</label>
+                        <label htmlFor="amount">Сумма, ₽</label>
                     </Col>
                     <Col sm={2}>
                         <input 
@@ -114,7 +114,7 @@ const OfferForm = (props) => {
                         {
                             amountEmpty ?
                             <div className="border border-danger text-center">
-                                Amount must be positive.
+                                Сумма должна быть положительной.
                             </div> :
                             ""
                         }
@@ -124,7 +124,7 @@ const OfferForm = (props) => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="interestRate">Interest rate, %</label>
+                        <label htmlFor="interestRate">Процент, %</label>
                     </Col>
                     <Col sm={2}>
                         <input 
@@ -141,7 +141,7 @@ const OfferForm = (props) => {
                         {
                             rateEmpty ?
                             <div className="border border-danger text-center">
-                                Interest rate must be positive.
+                                Процент должен быть положительным.
                             </div> :
                             ""
                         }
@@ -151,7 +151,7 @@ const OfferForm = (props) => {
                     <Col sm={4}>
                     </Col>
                     <Col sm={2}>
-                        <label htmlFor="durationDays">Duration in days</label>
+                        <label htmlFor="durationDays">Продолжительность, дни</label>
                     </Col>
                     <Col sm={2}>
                         <input 
@@ -168,7 +168,7 @@ const OfferForm = (props) => {
                         {
                             durationEmpty ?
                             <div className="border border-danger text-center">
-                                Duration must be positive.
+                                Продолжительность должна быть положительной.
                             </div> :
                             ""
                         }
@@ -176,7 +176,7 @@ const OfferForm = (props) => {
                 </Row>
                 <Row className="d-flex justify-content-center">
                     <button onClick={props.dataCallback ? dataCallback : send} className="w-25 my-2 btn btn-outline-success">
-                        Submit
+                        Отправить
                     </button>
                 </Row>
             </Container>

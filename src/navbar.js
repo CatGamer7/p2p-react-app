@@ -11,33 +11,37 @@ const Navbar = (props) => (
         <Container>
             <Row>
                 <Col className="d-flex justify-content-center">
-                    <NavDropdown title="Offers" id="OffersDropdown" className="bigger-font">
+                    <NavDropdown title="Предложения" id="OffersDropdown" className="bigger-font">
                         <NavDropdown.Item>
-                            <Link to="/offer">All offers</Link>
+                            <Link to="/offer">Все предложения</Link>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
-                            <Link to="/offer/edit">New offer</Link>
+                            <Link to="/offer/edit">Новое предложение</Link>
                         </NavDropdown.Item>
                     </NavDropdown>
                 </Col>
                 <Col className="d-flex justify-content-center" >
-                    <NavDropdown title="Requests" id="RequestsDropdown" className="bigger-font">
+                    <NavDropdown title="Запросы" id="RequestsDropdown" className="bigger-font">
                         <NavDropdown.Item>
-                            <Link to="/request">All requests</Link>
+                            <Link to="/request">Все запросы</Link>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
-                            <Link to="/request/edit">New request</Link>
+                            <Link to="/request/edit">Новый запрос</Link>
                         </NavDropdown.Item>
                     </NavDropdown>
                 </Col>
                 <Col className="d-flex justify-content-center">
-                    <NavDropdown title="Users" id="UsersDropdown" className="bigger-font">
+                    <NavDropdown title="Пользователи" id="UsersDropdown" className="bigger-font">
                         <NavDropdown.Item>
-                            <Link to="/user">All users</Link>
+                            <Link to="/user">Все пользователи</Link>
                         </NavDropdown.Item>
-                        <NavDropdown.Item>
-                            <Link to="/user/edit">New user</Link>
-                        </NavDropdown.Item>
+                        {
+                            (props.login === null) ?
+                            (<NavDropdown.Item>
+                                <Link to="/user/edit">Новый пользователь</Link>
+                            </NavDropdown.Item>) :
+                            ""
+                        }
                     </NavDropdown>
                 </Col>
                 <Col className="d-flex justify-content-center">
@@ -45,13 +49,13 @@ const Navbar = (props) => (
                         (props.login === null) ?
                         (
                             <div className="d-flex justify-content-evenly bigger-font w-100">
-                                <NavLink to="/user/edit" className="py-2">Register</NavLink>
-                                <NavLink to="/login" className="py-2">Login</NavLink>
+                                <NavLink to="/user/edit" className="py-2">Регистрация</NavLink>
+                                <NavLink to="/login" className="py-2">Вход</NavLink>
                             </div>
                         ) :
                         (
                             <div className="d-flex justify-content-evenly bigger-font w-100">
-                                <NavLink to={"/user/" + props.login} className="py-2">My page</NavLink>
+                                <NavLink to={"/user/" + props.login} className="py-2">Мой профиль</NavLink>
                                 <Logout />
                             </div>
                         )

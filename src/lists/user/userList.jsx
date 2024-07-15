@@ -28,7 +28,7 @@ const UserList = () => {
     const navigation = useNavigate();
     const authFetch = useAuthFetch();
     const postFilters = usePostFilters();
-    
+
     const load = async (page) => {
         const filters = extractFilterList()
 
@@ -142,27 +142,27 @@ const UserList = () => {
         <Row className="border rounded">
             <Col sm={2}>
                 <p className="fw-bold">
-                    User ID
+                    ID
                 </p>
             </Col>
             <Col sm={3}>
                 <p className="fw-bold">
-                    Name
+                    Имя
                 </p>
             </Col>
             <Col sm={3}>
                 <p className="fw-bold">
-                    Email
+                    Почта
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Is active
+                    Активен
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Created at
+                    Время создания
                 </p>
             </Col>
         </Row>
@@ -177,7 +177,7 @@ const UserList = () => {
                     name="userID" 
                     id="userID" 
                     type="text"
-                    placeholder="(>=/<=/=)(operand)"
+                    placeholder="(>=/<=/=)(операнда)"
                 >
                 </input>
             </Col>
@@ -188,7 +188,7 @@ const UserList = () => {
                     name="name" 
                     id="name" 
                     type="text"
-                    placeholder="(=)(operand)"
+                    placeholder="(=)(операнда)"
                 >
                 </input>
             </Col>
@@ -199,7 +199,7 @@ const UserList = () => {
                     name="email" 
                     id="email" 
                     type="text"
-                    placeholder="(=)(operand)"
+                    placeholder="(=)(операнда)"
                 >
                 </input>
             </Col>
@@ -210,7 +210,7 @@ const UserList = () => {
                     name="active" 
                     id="active" 
                     type="text"
-                    placeholder="(=)(operand)"
+                    placeholder="(=)(операнда)"
                 >
                 </input>
             </Col>
@@ -231,10 +231,10 @@ const UserList = () => {
     const controls = (
         <Row className="d-flex justify-content-evenly my-3">
             <button onClick={() => load(pageNumber)} className="w-25 btn btn-outline-success">
-                Apply
+                Применить
             </button>
             <button onClick={reset} className="w-25 btn btn-outline-danger">
-                Reset
+                Сбросить
             </button>
             <hr className="mt-3"/>
         </Row>
@@ -246,7 +246,7 @@ const UserList = () => {
                 {header}
                 <Row className="my-1">
                     <button onClick={() => setOpen(!open)} className="btn btn-outline text-primary">
-                        Toggle filters
+                        Раскрыть/свернуть фильтры
                     </button>
                     <hr></hr>
                 </Row>

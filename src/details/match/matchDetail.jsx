@@ -67,27 +67,27 @@ const MatchDetail = (props) => {
         return (
             <Row>
                 <Col sm={2}>
-                    Matched amount, ₽
+                    Подобранная сумма, ₽
                 </Col>
                 <Col sm={2}>
-                    Borrower status
+                    Статус заёмщика
                 </Col>
                 <Col sm={8}>
                     <Row>
                         <Col sm={2}>
-                            Request ID
+                            ID
                         </Col>
                         <Col sm={2}>
-                            Amount, ₽
+                            Сумма, ₽
                         </Col>
                         <Col sm={4}>
-                            Reason, %
+                            Причина, %
                         </Col>
                         <Col sm={2}>
-                            Status
+                            Статус
                         </Col>
                         <Col sm={2}>
-                            Created at
+                            Время создания
                         </Col>
                     </Row>
                 </Col>
@@ -120,12 +120,12 @@ const MatchDetail = (props) => {
                 (<Container fluid className="border rounded">
                     <Row>
                         <p>
-                            Displaying match {matchIndex + 1} of {matches.length} 
+                            Демонстрируется запрос {matchIndex + 1} из {matches.length} 
                         </p>
                     </Row>
                     <Row className="mb-3">
                         <p className={matches[matchIndex]["status"] === "accepted" ? "text-success": ""}>
-                            Your status: {matches[matchIndex]["status"]}
+                            Ваш статус: {matches[matchIndex]["status"] === "created" ? "подобрано" : "принято"}
                         </p> 
                     </Row>
                     <MatchHeader />
@@ -134,10 +134,10 @@ const MatchDetail = (props) => {
                         (authUserId === props.userId) ?
                         <Row className="d-flex justify-content-evenly">
                             <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
-                                Reject
+                                Отказать
                             </button>
                             <button onClick={acceptFn} className="w-25 btn btn-outline-success">
-                                Accept
+                                Принять
                             </button> 
                         </Row>:
                         ""

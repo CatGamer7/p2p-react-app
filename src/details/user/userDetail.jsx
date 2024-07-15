@@ -59,7 +59,7 @@ const UserDetail = (props) => {
                             <table className="table table-bordered">
                                 <tr>
                                     <th>
-                                        User ID
+                                        ID
                                     </th>
                                     <td>
                                         {user["userId"]}
@@ -67,7 +67,7 @@ const UserDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Name
+                                        Имя
                                     </th>
                                     <td>
                                         {user["name"]}
@@ -75,7 +75,7 @@ const UserDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        email
+                                        Почта
                                     </th>
                                     <td>
                                         {user["email"]}
@@ -83,7 +83,7 @@ const UserDetail = (props) => {
                                 </tr>
                                 <tr>
                                     <th>
-                                        Created timestamp
+                                        Время создания
                                     </th>
                                     <td>
                                         {user["createdTimestamp"]}
@@ -101,14 +101,14 @@ const UserDetail = (props) => {
                             {
                                 ((authUserId === props.id) || authUserStaff) ?
                                 <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
-                                    Delete
+                                    Удалить
                                 </button> :
                                 ""
                             }
                             {
                                 (authUserId === props.id) ?
                                 <button onClick={() => setEditing(true)} className="w-25 btn btn-outline-primary">
-                                    Edit
+                                    Редактировать
                                 </button> :
                                 ""
                             }

@@ -17,7 +17,7 @@ const ProposalDetail = (props) => {
     const postFilters = usePostFilters();
     
     const authUserId = Number(localStorage.getItem("userId"));
-    
+
     const load = async (id) => {
 
         let url = baseApiUrl + "/proposal";
@@ -64,30 +64,30 @@ const ProposalDetail = (props) => {
         return (
             <Row>
                 <Col sm={2}>
-                    Matched amount, ₽
+                    Подобранная сумма, ₽
                 </Col>
                 <Col sm={2}>
-                    Lender Status
+                    Статус кредитора
                 </Col>
                 <Col sm={8}>
                     <Row>
                         <Col sm={2}>
-                            Offer ID
+                            ID
                          </Col>
                         <Col sm={2}>
-                            Amount, ₽
+                            Сумма, ₽
                         </Col>
                         <Col sm={2}>
-                            Interest rate, %
+                            Процент, %
                         </Col>
                         <Col sm={2}>
-                            Status
+                            Статус
                         </Col>
                         <Col sm={2}>
-                            Duration, days
+                            Продолжительность, дни
                         </Col>
                         <Col sm={2}>
-                            Created at
+                            Время создания
                         </Col>
                     </Row>
                 </Col>
@@ -120,12 +120,12 @@ const ProposalDetail = (props) => {
                 (<Container fluid className="border rounded">
                     <Row>
                         <p>
-                            Displaying proposal {proposalIndex + 1} of {proposals.length} 
+                            Демонстрируется предложение {proposalIndex + 1} из {proposals.length} 
                         </p>
                     </Row>
                     <Row className="mb-3">
                         <p className={proposals[proposalIndex]["status"] === "accepted" ? "text-success": ""}>
-                            Your status: {proposals[proposalIndex]["status"]}
+                            Ваш статус: {proposals[proposalIndex]["status"] === "created" ? "подобрано" : "принято"}
                         </p> 
                     </Row>
                     <MatchHeader />
@@ -134,10 +134,10 @@ const ProposalDetail = (props) => {
                         (authUserId === props.userId) ?
                         <Row className="d-flex justify-content-evenly">
                             <button onClick={deleteFn} className="w-25 btn btn-outline-danger">
-                                Delete
+                                Отказать
                             </button>
                             <button onClick={acceptFn} className="w-25 btn btn-outline-success">
-                                Accept
+                                Принять
                             </button> 
                         </Row>:
                         ""

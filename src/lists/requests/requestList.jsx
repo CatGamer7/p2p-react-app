@@ -142,27 +142,27 @@ const RequestList = () => {
         <Row className="border rounded mb-3">
             <Col sm={2}>
                 <p className="fw-bold">
-                    Request ID
+                    ID
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Amount, ₽
+                    Сумма, ₽
                 </p>
             </Col>
             <Col sm={4}>
                 <p className="fw-bold">
-                    Reason, %
+                    Причина, %
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Status
+                    Статус
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Created at
+                    Время создания
                 </p>
             </Col>
         </Row>
@@ -177,7 +177,7 @@ const RequestList = () => {
                     name="requestId" 
                     id="requestId" 
                     type="text"
-                    placeholder="(>=/<=/=)(operand)"
+                    placeholder="(>=/<=/=)(операнд)"
                 >
                 </input>
             </Col>
@@ -188,7 +188,7 @@ const RequestList = () => {
                     name="amount" 
                     id="amount" 
                     type="text"
-                    placeholder="(>=/<=/=)(operand)"
+                    placeholder="(>=/<=/=)(операнд)"
                 >
                 </input>
             </Col>
@@ -199,7 +199,7 @@ const RequestList = () => {
                     name="reason" 
                     id="reason" 
                     type="text"
-                    placeholder="(=)(operand)"
+                    placeholder="(=)(операнд)"
                 >
                 </input>
             </Col>
@@ -210,7 +210,7 @@ const RequestList = () => {
                     name="status" 
                     id="status" 
                     type="text"
-                    placeholder="(>=/<=/=)(operand)"
+                    placeholder="(>=/<=/=)(операнд)"
                 >
                 </input>
             </Col>
@@ -231,10 +231,10 @@ const RequestList = () => {
     const controls = (
         <Row className="d-flex justify-content-evenly my-3">
             <button onClick={() => load(pageNumber)} className="w-25 btn btn-outline-success">
-                Apply
+                Применить
             </button>
             <button onClick={reset} className="w-25 btn btn-outline-danger">
-                Reset
+                Сбросить
             </button>
             <hr className="mt-3"/>
         </Row>
@@ -246,7 +246,7 @@ const RequestList = () => {
                 {header}
                 <Row className="my-1">
                     <button onClick={() => setOpen(!open)} className="btn btn-outline text-primary">
-                        Toggle filters
+                        Раскрыть/свернуть фильтры
                     </button>
                     <hr></hr>
                 </Row>

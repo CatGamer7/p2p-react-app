@@ -2,8 +2,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 
-const OfferLi = (props) => (
-    <Row>
+const OfferLi = (props) => {
+    const humanize = (stringStatus) => {
+        switch (stringStatus) {
+            case "available":
+                return "Доступен";
+
+            case "matched":
+                return "Подобран";
+        }
+    }
+
+    (<Row>
         <Col sm={2}>
             <Link to={"/offer/" + props.offer["offerId"]}>{props.offer["offerId"]}</Link>
         </Col>
@@ -14,7 +24,7 @@ const OfferLi = (props) => (
             {props.offer["interestRate"]}
         </Col>
         <Col sm={2}>
-            {props.offer["status"]}
+            {humanize(props.offer["status"])}
         </Col>
         <Col sm={2}>
             {props.offer["durationDays"]}
@@ -23,7 +33,7 @@ const OfferLi = (props) => (
             {new Date(props.offer["createdTimestamp"]).toLocaleTimeString("ru", {hour12: false})}
         </Col>
         <hr/>
-    </Row>
-);
+    </Row>)
+};
 
 export default OfferLi;
