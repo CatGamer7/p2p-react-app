@@ -38,8 +38,8 @@ const OfferList = () => {
             .then((data) => {
                 setOffers(data["content"]);
                 setPageNumber(data["pageable"]["pageNumber"]);
-                setpageLast(data["last"]);
-                setpageFirst(data["first"]);
+                setpageLast(data["last"])
+                setpageFirst(data["first"])
                 setLoading(false);
             })
             .catch(error => {
@@ -54,8 +54,8 @@ const OfferList = () => {
                 if ("content" in data) {
                     setOffers(data["content"]);
                     setPageNumber(data["pageable"]["pageNumber"]);
-                    setpageLast(data["last"]);
-                    setpageFirst(data["first"]);
+                    setpageLast(data["last"])
+                    setpageFirst(data["first"])
                     setLoading(false);
                 }
             })
@@ -149,32 +149,32 @@ const OfferList = () => {
         <Row className="border rounded mb-3">
             <Col sm={2}>
                 <p className="fw-bold">
-                    ID
+                    Offer ID
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Сумма, ₽
+                    Amount, ₽
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Процент, %
+                    Interest rate, %
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Статус
+                    Status
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Продолжительность, дни
+                    Duration, days
                 </p>
             </Col>
             <Col sm={2}>
                 <p className="fw-bold">
-                    Время создания
+                    Created at
                 </p>
             </Col>
         </Row>
@@ -189,7 +189,7 @@ const OfferList = () => {
                     name="offerId" 
                     id="offerId" 
                     type="text"
-                    placeholder="(>=/<=/=)(операнда)"
+                    placeholder="(>=/<=/=)(operand)"
                 >
                 </input>
             </Col>
@@ -200,7 +200,7 @@ const OfferList = () => {
                     name="amount" 
                     id="amount" 
                     type="text"
-                    placeholder="(>=/<=/=)(операнда)"
+                    placeholder="(>=/<=/=)(operand)"
                 >
                 </input>
             </Col>
@@ -211,7 +211,7 @@ const OfferList = () => {
                     name="interestRate" 
                     id="interestRate" 
                     type="text"
-                    placeholder="(>=/<=/=)(операнда)"
+                    placeholder="(>=/<=/=)(operand)"
                 >
                 </input>
             </Col>
@@ -222,7 +222,7 @@ const OfferList = () => {
                     name="status" 
                     id="status" 
                     type="text"
-                    placeholder="(>=/<=/=)(операнда)"
+                    placeholder="(>=/<=/=)(operand)"
                 >
                 </input>
             </Col>
@@ -233,7 +233,7 @@ const OfferList = () => {
                     name="durationDays" 
                     id="durationDays" 
                     type="text"
-                    placeholder="(>=/<=/=)(операнда)"
+                    placeholder="(>=/<=/=)(operand)"
                 >
                 </input>
             </Col>
@@ -254,10 +254,10 @@ const OfferList = () => {
     const controls = (
         <Row className="d-flex justify-content-evenly my-3">
             <button onClick={() => load(pageNumber)} className="w-25 btn btn-outline-success">
-                Применить
+                Apply
             </button>
             <button onClick={reset} className="w-25 btn btn-outline-danger">
-                Сбросить
+                Reset
             </button>
             <hr className="mt-3"/>
         </Row>
@@ -269,7 +269,7 @@ const OfferList = () => {
                 {header}
                 <Row className="my-1">
                     <button onClick={() => setOpen(!open)} className="btn btn-outline text-primary">
-                        Раскрыть/свернуть фильтры
+                        Toggle filters
                     </button>
                     <hr></hr>
                 </Row>
