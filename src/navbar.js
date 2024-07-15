@@ -3,10 +3,10 @@ import Container from 'react-bootstrap/esm/Container';
 import Row from 'react-bootstrap/esm/Row';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Logout from './auth/logout';
 
-const Navbar = () => (
+const Navbar = (props) => (
     <Nav className="mb-3 border border-primary border-3">
         <Container>
             <Row>
@@ -42,16 +42,16 @@ const Navbar = () => (
                 </Col>
                 <Col className="d-flex justify-content-center">
                     {
-                        (localStorage.getItem("authHeader") === null) ?
+                        (props.login === null) ?
                         (
-                            <div className="d-flex justify-content-evenly">
-                                <Link to="/user/edit">Register</Link>
-                                <Link to="/login">Login</Link>
+                            <div className="d-flex justify-content-evenly bigger-font w-100">
+                                <NavLink to="/user/edit" className="py-2">Register</NavLink>
+                                <NavLink to="/login" className="py-2">Login</NavLink>
                             </div>
                         ) :
                         (
-                            <div className="d-flex justify-content-evenly">
-                                <Link to={"/user/" + localStorage.getItem("userId")}>My page</Link>
+                            <div className="d-flex justify-content-evenly bigger-font w-100">
+                                <NavLink to={"/user/" + props.login} className="py-2">My page</NavLink>
                                 <Logout />
                             </div>
                         )

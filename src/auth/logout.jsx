@@ -8,13 +8,14 @@ const Logout = () => {
         localStorage.removeItem("authHeader");
         localStorage.removeItem("userId");
         
-        navigation("/login")
+        navigation("/login");
+        navigation(0); //Disgusting, but it refreshes navbar
     }
 
     return (
-        <button onClick={clear}>
+        <a href="#" onClick={clear} className="py-2">
             Logout
-        </button>
+        </a>
     );
 }
 

@@ -6,7 +6,7 @@ import Footer from './footer'
 const App = () => {
     return (
         <div>
-            <Navbar/>
+            <Navbar login={localStorage.getItem("userId")}/>
             <Main/>
             <Footer/>
         </div>

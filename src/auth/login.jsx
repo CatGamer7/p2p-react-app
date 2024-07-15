@@ -45,6 +45,7 @@ const LoginForm = () => {
                     localStorage.setItem("userId", data["content"][0]["userId"]);
 
                     navigation("/");
+                    navigation(0);  //Disgusting, but it refreshes navbar
                 }
                 else {
                     setInvalid(true)
