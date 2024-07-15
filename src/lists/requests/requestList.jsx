@@ -188,7 +188,7 @@ const RequestList = () => {
                     name="requestId" 
                     id="requestId" 
                     type="text"
-                    placeholder="(>=/<=/=)(операнд)"
+                    placeholder="(>=/<=/=)(операнда)"
                 >
                 </input>
             </Col>
@@ -199,7 +199,7 @@ const RequestList = () => {
                     name="amount" 
                     id="amount" 
                     type="text"
-                    placeholder="(>=/<=/=)(операнд)"
+                    placeholder="(>=/<=/=)(операнда)"
                 >
                 </input>
             </Col>
@@ -210,7 +210,7 @@ const RequestList = () => {
                     name="reason" 
                     id="reason" 
                     type="text"
-                    placeholder="(=)(операнд)"
+                    placeholder="(=)(операнда)"
                 >
                 </input>
             </Col>
@@ -221,7 +221,7 @@ const RequestList = () => {
                     name="status" 
                     id="status" 
                     type="text"
-                    placeholder="(>=/<=/=)(операнд)"
+                    placeholder="(>=/<=/=)(операнда)"
                 >
                 </input>
             </Col>

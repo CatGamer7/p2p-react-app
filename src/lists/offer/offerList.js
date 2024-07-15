@@ -233,7 +233,7 @@ const OfferList = () => {
                     name="status" 
                     id="status" 
                     type="text"
-                    placeholder="(>=/<=/=)(операнда)"
+                    placeholder="(=)(операнда)"
                 >
                 </input>
             </Col>
