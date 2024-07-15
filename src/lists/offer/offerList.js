@@ -29,6 +29,16 @@ const OfferList = () => {
     const navigation = useNavigate();
     const authFetch = useAuthFetch();
     const postFilters = usePostFilters();
+    
+    const reverseHumanize = (stringStatus) => {
+        switch (stringStatus) {
+            case "Доступно":
+                return "available";
+
+            case "Подобрано":
+                return "matched";
+        }
+    }
 
     const load = async (page) => {
         const filters = extractFilterList()
@@ -114,6 +124,7 @@ const OfferList = () => {
         
         possibleFilter = makeFilter("status", searchStatus);
         if (possibleFilter) {
+            possibleFilter["operands"] = [reverseHumanize(possibleFilter["operands"][0])]
             out.push(possibleFilter);
         }
 

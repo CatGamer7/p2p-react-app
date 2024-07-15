@@ -14,7 +14,7 @@ const UserLi = (props) => (
             {props.user["email"]}
         </Col>
         <Col sm={2}>
-            {props.user["active"] ? "активен" : "неактивен"}
+            {props.user["active"] ? "Активен" : "Неактивен"}
         </Col>
         <Col sm={2}>
             {new Date(props.user["createdTimestamp"]).toLocaleString("ru", {hour12: false})}

@@ -29,6 +29,16 @@ const RequestList = () => {
     const authFetch = useAuthFetch();
     const postFilters = usePostFilters();
 
+    const reverseHumanize = (stringStatus) => {
+        switch (stringStatus) {
+            case "В обработке":
+                return "pending";
+
+            case "Подобран":
+                return "matched";
+        }
+    }
+
     const load = async (page) => {
         const filters = extractFilterList()
 
@@ -113,6 +123,7 @@ const RequestList = () => {
         
         possibleFilter = makeFilter("status", searchStatus);
         if (possibleFilter) {
+            possibleFilter["operands"] = [reverseHumanize(possibleFilter["operands"][0])]
             out.push(possibleFilter);
         }
 
