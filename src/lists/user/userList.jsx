@@ -66,6 +66,15 @@ const UserList = () => {
         }
     };
 
+    const statusFilter = (str) => {
+        switch (str) {
+            case "Активен":
+                return "true";
+            case "Неактивен":
+                return "false";
+        }
+    }
+
     const makeFilter = (column, value) => {
         var trimmed = value.trim();
 
@@ -113,6 +122,7 @@ const UserList = () => {
         
         possibleFilter = makeFilter("active", searchActive);
         if (possibleFilter) {
+            possibleFilter["operands"] = [statusFilter(possibleFilter["operands"][0])]
             out.push(possibleFilter);
         }
 
