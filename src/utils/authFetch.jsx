@@ -21,8 +21,12 @@ const useAuthFetch = () => {
         )
         .then((res) => {
             if (res.status === 404) {
-                navigation("/not-found")
-                return 
+                navigation("/not-found");
+                return;
+            }
+            else if (res.status === 401) {
+                navigation("/login");
+                return;
             }
             
             return res.json();

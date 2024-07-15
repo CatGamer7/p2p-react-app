@@ -28,7 +28,7 @@ const UserList = () => {
     const navigation = useNavigate();
     const authFetch = useAuthFetch();
     const postFilters = usePostFilters();
-
+    
     const load = async (page) => {
         const filters = extractFilterList()
 
